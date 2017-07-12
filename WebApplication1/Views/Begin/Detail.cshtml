@@ -1,0 +1,41 @@
+﻿@model MvcBasic.Models.Member
+
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Member</h4>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>    
+        <dt>
+            @Html.DisplayNameFor(model => model.Birth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Birth)
+        </dd>   
+        <dt>
+            @Html.DisplayNameFor(model => model.Married)
+        </dt>
+         <dd>
+            @Html.DisplayFor(model => model.Married)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Memo)
+        </dt>
+       <dd>
+         @Html.DisplayFor(model => model.Memo)
+      </dd>
+</div>
