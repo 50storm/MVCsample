@@ -31,9 +31,10 @@
         </th>
         <th></th>
     </tr>
-@*@if(Model != null)*@
-@* {  *@
-    @foreach (var item in Model) {
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.LastName)
@@ -54,12 +55,19 @@
             @Html.DisplayFor(modelItem => item.Memo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
     }
-@*}  *@
-
+}
+else
+{
+    <tr>
+        <td colspan="6">
+           modelが空っぽ
+        </td>
+    </tr>
+}
 </table>
