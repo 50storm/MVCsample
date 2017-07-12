@@ -20,16 +20,22 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileWrapper uploadFile)
         {
-            if (uploadFile != null)
+            try
             {
-                //日付つける
+                if (uploadFile != null)
+                {
+                    //日付つける
+                    string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetFileName(uploadFile.FileName);
 
-                string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") +  Path.GetFileName(uploadFile.FileName);
+                    uploadFile.SaveAs(Server.MapPath("~/uploads/") + fileName);
 
-                uploadFile.SaveAs(Server.MapPath("~/uploads/") + fileName);
+                }
 
             }
-
+            catch (Exception e) {
+               
+            }
+            
             return View();
         }
     }
