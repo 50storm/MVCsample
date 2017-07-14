@@ -50,6 +50,8 @@ namespace WebApplication1.Controllers
         // GET: Members/Create
         public ActionResult Create()
         {
+            ViewBag.Enable = true;
+
             return View();
         }
 
@@ -62,6 +64,7 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
+                /*
                 db.Members.Add(member);
                 db.SaveChanges();
                 string email = member.Email;
@@ -133,10 +136,50 @@ namespace WebApplication1.Controllers
                 sc.Dispose();
                 //return RedirectToAction("Index");
                 return RedirectToAction("Message");
+                */
+
+
+     
+                //TempData["member"] = member;
+                //return RedirectToAction("CreateConfirm");
+
+                ViewBag.member = member;
+                return View("CreateConfirm");
+
 
             }
             return View(member);
         }
+
+        public ActionResult CreateConfirm() {
+
+            ViewBag.member = TempData["member"];
+
+            return View();
+
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Register([Bind(Include = "Id,LastName,FirstName,Email,Birth,Married,Memo")] Member member)
+        {
+            //http://qiita.com/kosei/items/d04f794278fba08b949c
+            //falseで登録できない
+            //
+            //if (ModelState.IsValid)
+            //{
+            db.Members.Add(member);
+            //db.SaveChanges()呼び出されたときにバリデーションしない。
+            db.Configuration.ValidateOnSaveEnabled = false;
+            db.SaveChanges();
+            //}
+
+            //ViewBag.member = member;
+
+            return View();
+
+        }
+
 
         // GET: Members/Edit/5
         public ActionResult Edit(int? id)

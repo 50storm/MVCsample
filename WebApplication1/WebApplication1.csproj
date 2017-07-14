@@ -222,6 +222,8 @@
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Members\Message.cshtml" />
     <Content Include="Views\Upload\Index.cshtml" />
+    <Content Include="Views\Members\CreateConfirm.cshtml" />
+    <Content Include="Views\Members\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
