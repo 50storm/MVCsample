@@ -19,8 +19,8 @@ namespace WebApplication1
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //追加
-            Database.SetInitializer<MvcBasicContext>(new MvcBasicInitializer());
+            //テストデータ自動生成する場合
+            //Database.SetInitializer<MvcBasicContext>(new MvcBasicInitializer());
 
         }
     }
