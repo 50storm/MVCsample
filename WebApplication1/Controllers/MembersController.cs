@@ -64,87 +64,21 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                /*
+                //保存
                 db.Members.Add(member);
                 db.SaveChanges();
-                string email = member.Email;
-
-                //登録したE-Mailで引く
-                //var m = db.Members.Where(x => x.Email == email);
-          
-
-                //メール
-                string url=null;
-
-                //string hashedText = Utilities.MyTool.GetHashedTextString(DateTime.Now.ToString());
-
-                 string controllerName = this.RouteData.Values["controller"].ToString();
                 
-                
-                var helper = new UrlHelper(ControllerContext.RequestContext);
+                string controllerName = this.RouteData.Values["controller"].ToString();
+                String url =  Auth.createUrl(member, "Activate", controllerName, Request.Url.Scheme, ControllerContext.RequestContext);
 
-                var indexPath = helper.Action("Index", "Home"); // => "/Home"
-                var activationUrl = helper.Action("Activate", controllerName, null, Request.Url.Scheme); // => 		indexUrl	"http://localhost:50195/Members/Activate"	string
-
-                //Emailでハッシュを作り
-                string hashedText = Utilities.MyTool.GetHashedTextString(member.Email);
-
-                //RouteValueDictionary parameters = new RouteValueDictionary {{ "Axtivate", hashedText  } };
-                //var ActivationKey = parameters.Where(x => x.Key == "Activate");
-
-                //VirtualPathData vpd = RouteTable.Routes.GetVirtualPath(
-                  //null,
-                  //"Members",
-                  //parameters);
-
-                ////url = vpd.VirtualPath;
+                Auth.sendEmall(member, url);
 
 
-                //Hotmailでメールを送信する
+                // var activationUrl = Action("Activate", controllerName, null, Request.Url.Scheme); // => 		indexUrl	"http://localhost:50195/Members/Activate"	string
 
 
-                string mailTitle = "テストメールです。";
-                string mailText = "このメールは、テストです。" + Environment.NewLine + activationUrl+"?"+ hashedText;
-
-
-                //MailMessageの作成
-                System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage(member.Email, member.Email, mailTitle , mailText);
-
-                System.Net.Mail.SmtpClient sc = new System.Net.Mail.SmtpClient();
-                ////SMTPサーバーなどを設定する
-                //sc.Host = "smtp.live.com";
-                //sc.Port = 587;
-                //sc.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                ////ユーザー名とパスワードを設定する
-                //sc.Credentials = new System.Net.NetworkCredential("iga1128@msn.com", "xyzhiro0415");
-
-                //SMTPサーバーなどを設定する
-                sc.Host = "smtp.gmail.com";
-                sc.Port = 587;
-                sc.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                //ユーザー名とパスワードを設定する
-                sc.Credentials = new System.Net.NetworkCredential("iga1128@gmail.com", "Narita1981");
-   
-                //SSLを使用する
-                sc.EnableSsl = true;
-                //メッセージを送信する
-                sc.Send(msg);
-
-                //後始末
-                msg.Dispose();
-                //後始末（.NET Framework 4.0以降）
-                sc.Dispose();
-                //return RedirectToAction("Index");
-                return RedirectToAction("Message");
-                */
-
-
-     
-                //TempData["member"] = member;
-                //return RedirectToAction("CreateConfirm");
-
-                ViewBag.member = member;
-                return View("CreateConfirm");
+                //       ViewBag.member = member;
+                //        return View("CreateConfirm");
 
 
             }
