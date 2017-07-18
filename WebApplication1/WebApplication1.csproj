@@ -148,6 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AjaxMemberController.cs" />
     <Compile Include="Controllers\BeginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
@@ -659,6 +660,11 @@
     <Content Include="Views\Upload\Index.cshtml" />
     <Content Include="Views\Members\CreateConfirm.cshtml" />
     <Content Include="Views\Members\Register.cshtml" />
+    <Content Include="Views\AjaxMember\Create.cshtml" />
+    <Content Include="Views\AjaxMember\Delete.cshtml" />
+    <Content Include="Views\AjaxMember\Details.cshtml" />
+    <Content Include="Views\AjaxMember\Edit.cshtml" />
+    <Content Include="Views\AjaxMember\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
