@@ -9,12 +9,18 @@ using System.Web.Routing;
 using MvcBasic.Models;
 using System.Data.Entity;
 
+//WEBAPI
+using System.Web.Http;
+//using System.Web.Routing;
+
+
 namespace WebApplication1
 {
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
+            GlobalConfiguration.Configure(WebApiConfig.Register);//WEBAPI
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
