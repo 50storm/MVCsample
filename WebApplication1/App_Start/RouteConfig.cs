@@ -18,7 +18,7 @@ namespace WebApplication1
                 url: "{controller}/{action}/{id}",
                     //defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
                     //defaults: new { controller = "Begin", action = "List", id = UrlParameter.Optional }
-                    defaults: new { controller = "AjaxMember", action = "Create", id = UrlParameter.Optional }
+                    defaults: new { controller = "AjaxMember", action = "Index", id = UrlParameter.Optional }
 
                     );
            

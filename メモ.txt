@@ -1,0 +1,22 @@
+http://rich.hrd.co.jp/asp-net-razor-jueryui%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9/
+ 
+https://www.nuget.org/packages/jQuery.UI.Themes/
+
+Install-Package jQuery.UI.Combined -Version 1.12.1
+
+Install-Package jQuery.UI.Themes -Version 1.11.1.1
+
+ Install-Package jquery.ui.combined
+  Install-Package jquery.ui.theme.redmond
+  
+  
+バリデーションがいけてない
+クライアントのバリデーション無効化
+web.config
+<!--<add key="ClientValidationEnabled" value="true" />-->
+    <add key="ClientValidationEnabled" value="false" />
+    
+デフォルトで jQuery Validation と jQuery Unobtrusive Validation がインストールされます。
+jQuery Validation に代わって、高機能なバリデーション ライブラリである formValidation を使ってみることにしました。
+
+http://tech.blog.aerie.jp/entry/2015/05/03/181049

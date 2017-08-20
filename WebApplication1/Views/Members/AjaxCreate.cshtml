@@ -1,0 +1,218 @@
+﻿@model MvcBasic.Models.Member
+
+
+@{
+    ViewBag.Title = "AjaxSample";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm())
+{
+
+
+    @*@Html.AntiForgeryToken()*@
+
+    <div class="form-horizontal">
+        <h4>Member</h4>
+        <h5>@ViewBag.mode</h5>
+        <p>
+
+
+            <input type="radio" name="mode" value="0">登録
+            <input type="radio" name="mode" value="1">修正
+            <input type="radio" name="mode" value="2">削除
+
+
+        </p>
+        <hr />
+
+        <div class="form-horizontal">
+            <h4>Member</h4>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Birth, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Birth, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Birth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Married, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Married)
+                        @Html.ValidationMessageFor(model => model.Married, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Memo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Memo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Memo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="POST" class="btn btn-default" id="PostButton" />
+                <input type="button" value="POST[Update]" class="btn btn-default" id="PosUpdatetButton" />
+                <input type="button" value="GET" class="btn btn-default" id="GetButton" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    <script>
+        $(function () {
+            $("#PostButton").on('click', function () {
+                var postData = {};
+                postData.LastName = $('#LastName').val();
+                postData.FirstName = $('#FirstName').val();
+                postData.Email = $('#Email').val();
+                postData.Birth = $('#Birth').val();
+
+                $.ajax({
+
+                    type: "POST",
+                    url: "/api/MemberApi",
+                    data: postData,
+                    success: function (data) {
+                        //alert("Success!");
+                        console.log(data);
+                        $.each(data, function (i, elem) {
+                            console.log(elem.Id);
+                            console.log(elem.Email);
+                            console.log(elem.LastName);
+                            console.log(elem.FirstName);
+                            console.log(elem.Birth);
+
+                        });
+
+                    },
+                    error: function (error) {
+                        // alert(error);
+                    }
+
+                });
+
+            });
+
+
+            $("#PosUpdatetButton").on('click', function () {
+                var postData = {};
+
+                postData.Id = $('#Id').val();
+                postData.LastName = $('#LastName').val();
+                postData.FirstName = $('#FirstName').val();
+                postData.Email = $('#Email').val();
+                postData.Birth = $('#Birth').val();
+
+                $.ajax({
+
+                    type: "PUT",
+                    url: "/api/MemberApi",
+                    data: postData,
+                    success: function (data) {
+                        //alert("Success!");
+                        console.log(data);
+                        $.each(data, function (i, elem) {
+                            console.log(elem.Id);
+                            console.log(elem.Email);
+                            console.log(elem.LastName);
+                            console.log(elem.FirstName);
+                            console.log(elem.Birth);
+
+                        });
+
+                    },
+                    error: function (error) {
+                        // alert(error);
+                    }
+
+                });
+
+            });
+
+
+
+
+            $("#GetButton").on('click', function () {
+
+                var url = "@Url.Action("Create","Sample")";
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    // data: "name=John&location=Boston",
+                    success: function (data) {
+                        //alert("Success!");
+                        console.log(data);
+                        $.each(data, function (i, elem) {
+                            console.log(elem.Id);
+                            console.log(elem.Email);
+                            console.log(elem.LastName);
+                            console.log(elem.FirstName);
+                            console.log(elem.Birth);
+
+                        });
+
+                    },
+                    error: function (error) {
+                        alert(error);
+                    }
+
+                });
+
+            });
+
+
+        });
+    </script>
+
+
+}

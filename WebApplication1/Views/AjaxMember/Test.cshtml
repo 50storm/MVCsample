@@ -1,0 +1,39 @@
+﻿@*@model MvcBasic.Models.Setting*@
+@model MvcBasic.Models.Setting
+
+@{ }
+
+    <h2>Test</h2>
+    <table>
+        @foreach (var x in (IEnumerable<dynamic>)Model.dataH1_I1_I2)
+        {
+            Type type = x.GetType();
+            //var properties = type.GetProperties();
+            //Dynamic
+            var propertyH1 = type.GetProperty("H1").GetValue(x);
+            var propertyI1 = type.GetProperty("I1").GetValue(x);
+            var propertyI2 = type.GetProperty("I2").GetValue(x);
+
+            var H1_KbnCd = propertyH1.KbnCd;
+            var I1_KbnCd = propertyI1.KbnCd;
+            var I2_KbnCd = propertyI2.KbnCd;
+
+            var H1_RecCd = propertyH1.RecCd;
+            var I1_RecCd = propertyI1.RecCd;
+            var I2_RecCd = propertyI2.RecCd;
+
+        <tr>
+             <td>
+               <input type="text" value="@H1_KbnCd" />
+                </td>
+            <td>
+                <input type="text" value="@I1_KbnCd" />
+            </td>
+            <td>
+                <input type="text" value="@I2_KbnCd" />
+            </td>
+
+            </tr>
+        }
+
+    </table>

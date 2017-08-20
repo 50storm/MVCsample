@@ -85,6 +85,50 @@ namespace WebApplication1.Controllers
             return View(member);
         }
 
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AjaxCreate([Bind(Include = "Id,LastName,FirstName,Email,Birth,Married,Memo")] Member member)
+        {
+            if (ModelState.IsValid)
+            {
+                //保存
+                db.Members.Add(member);
+                db.SaveChanges();
+
+                string controllerName = this.RouteData.Values["controller"].ToString();
+                String url = Auth.createUrl(member, "Activate", controllerName, Request.Url.Scheme, ControllerContext.RequestContext);
+
+                Auth.sendEmall(member, url);
+
+             
+
+            }
+            return View(member);
+        }
+
+
+        [HttpPost]
+        public ActionResult Find([Bind(Include = "Id")]Member member)
+        {
+            int? id = member.Id;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Member data = db.Members.Find(id);
+            if (data == null)
+            {
+                return HttpNotFound();
+            }
+            return Json(data);
+        }
+
+
+
+
         public ActionResult CreateConfirm() {
 
             ViewBag.member = TempData["member"];
